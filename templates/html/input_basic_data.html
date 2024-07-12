@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/images/medical_tech_icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/input_basic_data.css')}}">
+    <title>Basic Data</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <form class="form" method="post" action="{{ url_for('save_basic_data') }}">
+            <img src="/static/images/medical_tech_icon.png" alt="medical_tech_icon" width="100" height="100">
+            <h2>BASIC DATA</h2>
+            <div class="input-group">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="gender">Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female" required>
+                <label for="female">Female</label><br>
+            </div>
+
+            <div class="input-group">
+                <label for="age">Age:</label><br>
+
+                <input type="radio" id="radio-18-24" name="age" value="18-24" required>
+                <label for="child">18-24</label><br>
+
+                <input type="radio" id="radio-25-44" name="age" value="25-44" required>
+                <label for="teenager">25-44</label><br>
+
+                <input type="radio" id="radio-45-64" name="age" value="45-64" required>
+                <label for="adult">45-54</label><br>
+
+                <input type="radio" id="radio-65" name="age" value="65+" required>
+                <label for="elderly">65+</label><br>
+
+                <input type="radio" id="radio-75" name="age" value="75+" required>
+                <label for="elderly">75+</label><br>
+            </div>
+
+            <div class="input-group">
+                <label for="race">Race:</label><br>
+
+                <input type="radio" id="radio-hispanic" name="race" value="Hispanic" required>
+                <label for="child">Hispanic</label><br>
+
+                <input type="radio" id="radio-non-hispanic-white" name="race" value="Non-Hispanic White" required>
+                <label for="child">Non-Hispanic-White</label><br>
+
+                <input type="radio" id="radio-non-hispanic-black" name="race" value="Non-Hispanic Black" required>
+                <label for="child">Non-Hispanic-Black</label><br>
+
+                <input type="radio" id="radio-other" name="race" value="Other" required>
+                <label for="child">Other</label><br>
+            </div>
+
+            <button type="submit" id="nextButton">Next</button>
+            <button type="button" id="cancelButton" onclick="cancelButtonClick()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function cancelButtonClick() {
+            window.location.href = "/";
+        }
+    </script>
+
+</body>
+
+</html>

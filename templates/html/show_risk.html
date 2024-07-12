@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation</title>
+    <link rel="icon" href="/static/images/medical_tech_icon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/show_risk.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Evaluation</h1>
+        <p><strong>Name:</strong> {{ data.name }}</p>
+        <p><strong>Age:</strong> {{ data.age }}</p>
+        <p><strong>Gender:</strong> {{ data.gender }}</p>
+        <p><strong>Race:</strong> {{ data.race }}</p>
+        <p><strong>Risk Percentage:</strong> <span id="risk-percentage" data-risk="{{ data.risk_percentage }}"
+                data-color="{{ data.color }}">{{ data.risk_percentage }}%</span></p>
+
+        <h2>Risk Level</h2>
+        <canvas id="riskBarChart" width="400" height="200"></canvas>
+
+        <button type="button" id="homeButton" onclick="window.location.href='/'">Back to Home</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get data from data-risk and data-color attributes
+            var riskElement = document.getElementById('risk-percentage');
+            var riskPercentage = parseFloat(riskElement.getAttribute('data-risk'));
+            var riskColor = riskElement.getAttribute('data-color');
+
+            var ctx = document.getElementById('riskBarChart').getContext('2d');
+
+            var riskBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Risk'],
+                    datasets: [{
+                        label: 'Risk Percentage',
+                        data: [riskPercentage],
+                        backgroundColor: riskColor
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
